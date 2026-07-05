@@ -1,0 +1,18 @@
+torch
+torchvision
+opencv-python
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+PyYAML
+tqdm
+yt-dlp
+transformers
+accelerate
+httpx[socks]
+socksio
+onnxruntime-gpu
+# Do not install plain `onnxruntime` alongside onnxruntime-gpu; it disables CUDAExecutionProvider.
+rtmlib

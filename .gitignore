@@ -1,0 +1,66 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project artifacts (large or reproducible)
+data/*
+!data/.gitkeep
+!data/human_rating_sheet.csv
+results/
+checkpoints/
+external/
+
+# Third-party clones & model weights (see README setup)
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Caches & downloads
+.matplotlib-cache/
+.cache/
+.huggingface/
+torch_extensions/
+*.tar.gz
+*.zip
+
+# Logs & local runs
+*.log
+nohup.out
+
+# WSL / local proxy helpers (machine-specific)
+.bashrc.d/

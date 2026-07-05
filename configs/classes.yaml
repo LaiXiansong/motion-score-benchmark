@@ -1,0 +1,41 @@
+tiers:
+  1:
+    name: low
+    description: Mostly speaking or small upper-body motion.
+    classes:
+      - testifying
+      - answering questions
+      - presenting weather forecast
+      - reading newspaper
+  2:
+    name: medium
+    description: Full-body exercise or dance with clear but structured motion.
+    classes:
+      - zumba
+      - belly dancing
+      - doing aerobics
+      - lunge
+      - stretching arm
+  3:
+    name: high
+    description: High-amplitude or abrupt human motion, including combat sports.
+    classes:
+      - punching person (boxing)
+      - wrestling
+      - capoeira
+      - side kick
+      - kicking soccer ball
+
+download:
+  clips_per_class: 20
+  target_fps: 8
+  max_clip_seconds: 10
+  min_clip_seconds: 4
+
+evaluation:
+  human_rating_min: 1
+  human_rating_max: 5
+  difficulty_bins:
+    easy: [0.0, 0.333333]
+    medium: [0.333333, 0.666667]
+    hard: [0.666667, 1.0]

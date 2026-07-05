@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>第3章 文献综述总览 — 运动与幅度的度量方法</title>
+    <dateCreated>Sun, 05 Jul 2026 16:00:00 GMT</dateCreated>
+  </head>
+  <body>
+    <outline text="第3章 文献综述：运动与幅度的度量方法">
+      <outline text="3.1 五种分类视角">
+        <outline text="视角 A：信号来源（技术路线）">
+          <outline text="几何/骨架 — 2D/3D关键点、SMPL-X、关节角">
+            <outline text="HumanScore [3]"/>
+            <outline text="Motion-X [7]"/>
+            <outline text="FVMD [8]"/>
+            <outline text="THEval [6]"/>
+          </outline>
+          <outline text="像素/光流 — 稠密光流、像素位移">
+            <outline text="VBench Dynamic Degree [1]"/>
+            <outline text="Mojito [9]"/>
+            <outline text="SEA-RAFT [10]（估计器）"/>
+          </outline>
+          <outline text="深度特征 — I3D、VideoMAE嵌入">
+            <outline text="FVD [2]"/>
+            <outline text="Koala-36M VTSS [15]"/>
+          </outline>
+          <outline text="学习式评分 — 人工标注→回归/分类/RL">
+            <outline text="VideoScore [13][14]"/>
+            <outline text="MotionCritic [11]"/>
+          </outline>
+          <outline text="梯度归因 — 训练样本运动梯度">
+            <outline text="Motive [16]"/>
+          </outline>
+          <outline text="综合流水线 — 多模块串联">
+            <outline text="VMBench [4]"/>
+            <outline text="WYD [17]"/>
+          </outline>
+        </outline>
+        <outline text="视角 B：评测任务与应用场景">
+          <outline text="T2V模型排名 → VBench [1]"/>
+          <outline text="运动感知对齐评测 → VMBench PMM [4]"/>
+          <outline text="生成人体运动质量 → HumanScore [3]"/>
+          <outline text="可控I2V/角色动画 → Animate Anyone [20]、MotionStone [12]"/>
+          <outline text="说话人/面部 → THEval [6]"/>
+          <outline text="数据筛选与训练 → Koala [15]、Motive [16]"/>
+          <outline text="RLHF/奖励模型 → VideoScore [13][14]"/>
+        </outline>
+        <outline text="视角 C：空间与时间粒度">
+          <outline text="Clip级标量 — 单视频一分（难定位肢体）"/>
+          <outline text="帧对/帧序列 — top-5%光流、pose速度聚合"/>
+          <outline text="关键点轨迹 — FVMD、PAS"/>
+          <outline text="关节/部位向量 — HumanScore ROM（3D）"/>
+          <outline text="分布级距离 — FVD、FVMD Fréchet"/>
+        </outline>
+        <outline text="视角 D：Ground Truth 与标注成本">
+          <outline text="无标注启发式 — 光流阈值、ROM查表（成本低）"/>
+          <outline text="序数tier/动作类 — Kinetics、HumanScore三档（低-中）"/>
+          <outline text="绝对连续分1-5 — VideoScore（成本高）"/>
+          <outline text="成对比较A vs B — MotionStone±2、MotionPercept（中）"/>
+          <outline text="细粒度多维 — WYD 56类、VideoFeedback2（很高）"/>
+          <outline text="隐式梯度/损失 — Motive（非幅度语义）"/>
+        </outline>
+        <outline text="视角 E：幅度 vs 质量">
+          <outline text="幅度导向 — VBench DD、PAS、Mojito MIM、MotionStone、pose/flow"/>
+          <outline text="质量导向 — HumanScore六指标、VMBench MSS/CAS/OIS、VideoScore多维"/>
+          <outline text="混合 — FVMD（分布+一致性）、WYD（多维）"/>
+        </outline>
+      </outline>
+      <outline text="3.2 多维度方法对比总表（核心维度）">
+        <outline text="对比维度：信号｜输出｜粒度｜相机分离｜连续幅度｜人类对齐｜部位分解｜用途">
+          <outline text="光流类">
+            <outline text="VBench DD [1] — 二值动态/静态，T2V排名，本项目继承top-5%"/>
+            <outline text="Mojito [9] — 1-10级强度，生成控制"/>
+          </outline>
+          <outline text="感知/综合运动评测">
+            <outline text="VMBench PAS [4] — 主体追踪+感知阈值，相机分离✓，前景掩膜思路"/>
+            <outline text="VMBench MSS/CAS/OIS — 质量维度（非幅度）"/>
+          </outline>
+          <outline text="几何/骨架类">
+            <outline text="HumanScore [3] — 关节级ROM，LMA解剖层目标★"/>
+            <outline text="FVMD [8] — 轨迹Fréchet，运动一致性"/>
+            <outline text="THEval [6] — 面部8维，ρ≈0.87，tier-1说话类补充"/>
+            <outline text="Motion-X [7] — SMPL-X数据层，3D部位幅度GT"/>
+            <outline text="OpenHumanVid [5] — DWPose条件，训练数据"/>
+          </outline>
+          <outline text="学习/标注驱动">
+            <outline text="VideoScore [13] — 37.6K标注，Dynamic Degree 1-4分，learned蒸馏参考"/>
+            <outline text="VideoScore2 [14] — CoT+物理一致性"/>
+            <outline text="MotionStone [12] — 物体/相机解耦强度，成对标注范式"/>
+            <outline text="MotionCritic [11] — 52K偏好对，感知损失"/>
+            <outline text="Koala VTSS [15] — 训练适用性筛选"/>
+          </outline>
+          <outline text="其它">
+            <outline text="Motive [16] — 训练影响力，非幅度算子"/>
+            <outline text="WYD [17] — 56类综合I2V benchmark"/>
+            <outline text="FVD [2] — I3D分布距离，内容偏置[26]"/>
+          </outline>
+          <outline text="本项目 benchmark（已实践）">
+            <outline text="pose_motion — RTMO 2D，Spearman vs tier ≈ 0.49"/>
+            <outline text="flow_foreground — SEA-RAFT+pose框，≈ 0.40"/>
+            <outline text="learned_score — VideoMAE tier概率，≈ 0.84*"/>
+          </outline>
+        </outline>
+      </outline>
+      <outline text="3.3 按技术路线深入综述">
+        <outline text="3.3.1 几何与骨架路线">
+          <outline text="共同范式：关键点/人体模型 → 位移/角速度/ROM → 聚合">
+            <outline text="HumanScore [3]">
+              <outline text="解剖层：多余肢体、骨长恒定（质量）"/>
+              <outline text="运动学层：Joint Range★、自碰撞"/>
+              <outline text="动力学层：速度极值、平滑度"/>
+              <outline text="技术链：HMR→87点3D→SKELify→OpenSim ROM"/>
+              <outline text="数据：51动作×3难度×2强度"/>
+            </outline>
+            <outline text="VMBench PAS [4]">
+              <outline text="GroundingDINO→GroundedSAM→CoTracker"/>
+              <outline text="主体位移 vs 感知阈值，Spearman +35.3%"/>
+            </outline>
+            <outline text="FVMD [8] — PIPs++轨迹，速度/加速度直方图"/>
+            <outline text="THEval [6] — 面部pitch/yaw/roll、唇距"/>
+            <outline text="Motion-X [7] — SMPL-X标注流水线"/>
+            <outline text="OpenHumanVid [5] — 文本-外观-运动-面对齐"/>
+          </outline>
+          <outline text="小结：最贴近LMA；3D成本高，2D速度是折中"/>
+        </outline>
+        <outline text="3.3.2 光流与像素路线">
+          <outline text="VBench DD [1] — RAFT top-5%→二值，与一致性负相关"/>
+          <outline text="Mojito [9] — 光流离散1-10级作生成条件"/>
+          <outline text="SEA-RAFT [10] — 跨数据集光流估计，本项目采用"/>
+          <outline text="小结：低成本；相机/非人体运动是主误差→需前景分离"/>
+        </outline>
+        <outline text="3.3.3 学习式与感知对齐">
+          <outline text="VideoScore [13/14] — 万级标注，多维LM评分"/>
+          <outline text="MotionStone [12] — 成对±2，物体/相机解耦"/>
+          <outline text="MotionCritic [11] — Bradley-Terry偏好"/>
+          <outline text="Koala VTSS [15] — 数据工程"/>
+          <outline text="小结：人类对齐强；小数据易过拟合tier（learned回归collapse）"/>
+        </outline>
+        <outline text="3.3.4 梯度归因与其它">
+          <outline text="Motive [16] — motion-weighted梯度，筛数据非测幅度"/>
+          <outline text="WYD [17] — 光流+pose+分割+56类"/>
+          <outline text="FVD [2]+偏置[26] — 深度嵌入≠运动幅度"/>
+        </outline>
+      </outline>
+      <outline text="3.4 方法间互补与张力">
+        <outline text="信号→输出关系">
+          <outline text="光流/关键点 → 连续幅度"/>
+          <outline text="关键点 → 质量/合理性（HumanScore）"/>
+          <outline text="学习 → 连续幅度 + 序数tier"/>
+          <outline text="几何幅度 → 蒸馏 → 学习评分"/>
+        </outline>
+        <outline text="五重张力（+本项目实证）">
+          <outline text="幅度 vs 质量 — 动得大但超ROM仍扣分"/>
+          <outline text="连续 vs 序数 — learned_score 0.84 vs learned_motion 0.38"/>
+          <outline text="全局 vs 部位 — 说话类面部大、pose偏低"/>
+          <outline text="主体 vs 相机 — flow仍混相机"/>
+          <outline text="小数据learned vs 大标注VideoScore — 回归蒸馏不足"/>
+        </outline>
+      </outline>
+      <outline text="3.5 综述小结 → LMA启示">
+        <outline text="无单一最佳路线 → 分层组合（WYD/VMBench/HumanScore）"/>
+        <outline text="幅度算子应报告：相机分离｜粒度｜连续/序数｜GT类型"/>
+        <outline text="本项目三条腿：骨架速度｜前景光流｜小数据蒸馏"/>
+        <outline text="未覆盖：3D ROM｜THEval面部｜MotionStone成对标注｜Motive归因"/>
+      </outline>
+    </outline>
+  </body>
+</opml>
