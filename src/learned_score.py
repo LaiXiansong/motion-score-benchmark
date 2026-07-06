@@ -1,8 +1,37 @@
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
+DEFAULT_HF_HOME = Path.home() / ".cache" / "huggingface"
+
+
+def _hf_path_usable(path: Path) -> bool:
+    try:
+        if path.exists():
+            next(path.iterdir(), None)
+        else:
+            path.mkdir(parents=True, exist_ok=True)
+        return True
+    except OSError:
+        return False
+
+
+def ensure_hf_cache() -> None:
+    """Use a local WSL cache when HF_HOME points at an unavailable mount."""
+    hf_home = os.environ.get("HF_HOME")
+    if hf_home and _hf_path_usable(Path(hf_home)):
+        return
+    fallback = DEFAULT_HF_HOME
+    fallback.mkdir(parents=True, exist_ok=True)
+    os.environ["HF_HOME"] = str(fallback)
+    os.environ["HUGGINGFACE_HUB_CACHE"] = str(fallback / "hub")
+
+
+ensure_hf_cache()
+
 import argparse
 from dataclasses import dataclass
-from pathlib import Path
 
 import cv2
 import numpy as np

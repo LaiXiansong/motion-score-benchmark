@@ -227,6 +227,44 @@ Outputs:
   - `method_correlation.png` — inter-method Spearman heatmap
   - `human_scatter.png` — human rating agreement (when ratings are filled)
 
+## Per-Video Motion Visualization
+
+Inspect how each method's score evolves over time on a single clip:
+
+```bash
+# All three methods: side-by-side flow view, pose skeleton overlay, learned sliding window
+python scripts/visualize_motion.py \
+  --video data/clips/tier3/wrestling/IQTqINDBeNU_154_164.mp4 \
+  --method all \
+  --checkpoint checkpoints/learned_motion.pt \
+  --flow-backend farneback \
+  --device cuda \
+  --save-video
+
+# Flow only with live OpenCV window (original | flow overlay)
+python scripts/visualize_motion.py \
+  --video path/to/video.mp4 \
+  --method flow \
+  --display \
+  --flow-backend sea-raft \
+  --sea-raft-root "$SEA_RAFT_ROOT" \
+  --sea-raft-checkpoint "$SEA_RAFT_CHECKPOINT"
+
+# Pose only: keypoints drawn on each frame
+python scripts/visualize_motion.py \
+  --video path/to/video.mp4 \
+  --method pose \
+  --display
+```
+
+Outputs under `--output-dir` (default `results/visualizations/`):
+
+- `{stem}_timeline.png` — score vs time curves (one or three lines)
+- `{stem}_{flow,pose,learned}_timeline.csv` — per-frame scores
+- `{stem}_{flow,pose,learned}_preview.mp4` — annotated preview (with `--save-video`)
+
+Flow mode shows **original | optical-flow overlay** side by side. Pose mode draws **COCO skeleton keypoints** on the video. Learned mode uses a **sliding window** (16 frames ending at each sampled time) to produce a temporal `learned_score` curve; use `--learned-stride` to trade speed for resolution.
+
 ## One-command Runner
 
 After data is ready, the non-training path can be run with:

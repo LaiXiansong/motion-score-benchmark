@@ -64,3 +64,6 @@ nohup.out
 
 # WSL / local proxy helpers (machine-specific)
 .bashrc.d/
+
+# document
+docs/
